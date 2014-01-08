@@ -40,6 +40,12 @@ package 'git' do
   not_if 'which git'
 end
 
+homebrew_tap 'phinze/cask' 
+
+package "brew-cask" do
+  action :install
+end
+
 execute 'update homebrew from github' do
   user owner
   command '/usr/local/bin/brew update || true'
