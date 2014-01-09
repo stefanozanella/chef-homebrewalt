@@ -23,7 +23,7 @@ def load_current_resource
   @tap = Chef::Resource::HomebrewTap.new(new_resource.name)
   tap_dir = @tap.name.gsub('/', '-')
 
-  Chef::Log.debug("Checking whether we've already tapped #{new_resource.name}")
+  Chef::Log.debug("Checking whether we've already tapped #{new_resource.name} in #{tap_dir}")
   if ::File.directory?("/usr/local/Library/Taps/#{tap_dir}")
     @tap.tapped true
   else

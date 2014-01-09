@@ -15,7 +15,7 @@ action :cask do
   unless @cask.casked
     execute "installing cask #{new_resource.name}" do
       user node['current_user']
-      command "/usr/local/bin/brew cask install #{new_resource.name}"
+      command "/usr/local/bin/brew cask install --appdir=/Applications #{new_resource.name}"
       not_if "/usr/local/bin/brew brew list | grep #{new_resource.name}"
     end
   end

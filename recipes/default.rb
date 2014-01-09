@@ -40,7 +40,13 @@ package 'git' do
   not_if 'which git'
 end
 
-homebrew_tap 'phinze/cask' 
+homebrew_tap 'phinze/cask'
+
+directory "/opt/homebrew-cask/Caskroom" do
+    user node['current_user']
+    mode 00755
+    recursive true
+end
 
 package "brew-cask" do
   action :install
