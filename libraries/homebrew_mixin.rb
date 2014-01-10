@@ -29,7 +29,7 @@ module Homebrew
     private
 
     def calculate_owner
-      owner = homebrew_owner_attr || sudo_user || current_user
+      owner = user node['current_user']
       if owner == 'root'
         fail Chef::Exceptions::User,
              "Homebrew owner is 'root' which is not supported. " +
