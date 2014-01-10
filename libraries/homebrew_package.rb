@@ -92,7 +92,7 @@ class Chef
         end
 
         def get_response_from_command(command)
-          output = shell_out!(command, run_options(:timeout => 10000))
+          output = shell_out!(command, :timeout => 10000)
           output.stdout
         end
       end
