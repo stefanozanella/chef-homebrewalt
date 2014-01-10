@@ -46,7 +46,9 @@ class Chef
         end
 
         def upgrade_package(name, version)
-          brew('upgrade', name)
+          unless `brew outdated | grep #{name}`
+            brew('upgrade', name)
+          end
         end
 
         def remove_package(name, version)
@@ -82,7 +84,7 @@ class Chef
         end
 
         def get_version_from_formula
-          brew_cmd = shell_out!('brew --prefix', :user => homebrew_owner)
+          brew_cmd = shell_out!('brew --prefix', :user => node['current_user'])
           libpath = ::File.join(brew_cmd.stdout.chomp, 'Library', 'Homebrew')
           $LOAD_PATH.unshift(libpath)
 
@@ -93,11 +95,8 @@ class Chef
         end
 
         def get_response_from_command(command)
-          require 'etc'
-          home_dir = Etc.getpwnam(homebrew_owner).dir
-
-          Chef::Log.debug "Executing '#{command}' as #{homebrew_owner}"
-          output = shell_out!(command, :user => homebrew_owner, :environment => { 'HOME' => home_dir })
+          Chef::Log.debug "Executing '#{command}' as #{node['current_user']}"
+          output = shell_out!(command, :user => node['current_user'], :environment => { 'HOME' => node['etc']['passwd'][node['current_user']]['dir'] })
           output.stdout
         end
       end
