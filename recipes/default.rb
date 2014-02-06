@@ -42,7 +42,7 @@ package 'git' do
   not_if 'which git'
 end
 
-homebrew_tap 'phinze/cask'
+homebrew-alternative_tap 'phinze/cask'
 
 directory "/opt/homebrew-cask/Caskroom" do
     user node['current_user']
@@ -57,4 +57,12 @@ end
 execute 'update homebrew from github' do
   user node['current_user']
   command '/usr/local/bin/brew update || true'
+end
+
+node['brew']['cask_apps'].each do |app|
+  homebrew-alternative_cask app
+end
+
+node['brew']['apps'].each do |app|
+  package app
 end

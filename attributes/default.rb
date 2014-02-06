@@ -20,3 +20,6 @@
 #
 
 default['homebrew']['owner'] = nil
+
+default['brew']['cask_apps'] = []
+default['brew']['apps'] = []
