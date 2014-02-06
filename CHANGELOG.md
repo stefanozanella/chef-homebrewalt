@@ -1,6 +1,20 @@
-homebrew Cookbook CHANGELOG
+homebrew-alternative Cookbook CHANGELOG
 ===========================
-This file is used to list changes made in each version of the homebrew cookbook.
+
+This file is used to list changes made in each version of the homebrew-alternative cookbook.
+
+v1.7.0
+------
+- Rename to homebrew-alternative
+- Clean up files
+- Add Knife and Foodcritic testing
+-
+
+v1.6
+----
+- Add Homebrew cask installation
+- Fix issues with user permissions
+- Fix Chef timeouts for very long compiles (e.g. HHVM)
 
 
 v1.5.4

@@ -21,6 +21,11 @@
 
 extend(Homebrew::Mixin)
 
+directory "/usr/local" do
+  owner node['current_user']
+  recursive true
+end
+
 homebrew_go = "#{Chef::Config[:file_cache_path]}/homebrew_go"
 
 remote_file homebrew_go do

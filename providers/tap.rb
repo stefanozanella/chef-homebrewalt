@@ -37,6 +37,7 @@ action :tap do
       user node['current_user']
       command "/usr/local/bin/brew tap #{new_resource.name}"
     end
+    new_resource.updated_by_last_action(true)
   end
 end
 
@@ -46,5 +47,6 @@ action :untap do
       user node['current_user']
       command "/usr/local/bin/brew untap #{new_resource.name}"
     end
+    new_resource.updated_by_last_action(true)
   end
 end

@@ -1,33 +1,11 @@
 # Description
 
-This cookbook installs [Homebrew](http://mxcl.github.com/homebrew/)
-and replaces MacPorts as the *default package provider* for the
-package resource on OS X systems.
+This cookbook installs [Homebrew](http://mxcl.github.com/homebrew/) and [Homebrew Cask](https://github.com/phinze/homebrew-cask)
+and replaces MacPorts as the *default package provider* for the package resource on OS X systems.
 
-This cookbook is now maintained by Opscode. The original author,
-maintainer and copyright holder is Graeme Mathieson. The cookbook
-remains licensed under the Apache License version 2.
+This cookbook is an alternative implementation based upon the Homebrew cookbook maintained by Opscode and the pivotal_workstation cookbook by Pivotal Labs because the default Opscode cookbook did not work as needed for use in Kitchenplan.
 
-[Original blog post by Graeme](http://woss.name/2011/01/23/converging-your-home-directory-with-chef/)
-
-# Requirements
-
-## Prerequisites
-
-In order for this recipe to work, your userid must own `/usr/local`.
-This is outside the scope of the cookbook because it's anticipated
-that you'll run the cookbook as your own user, not root and you'd have
-to be root to take ownership of the directory. Easiest way to get
-started:
-
-    sudo chown -R `whoami`:staff /usr/local
-
-Bear in mind that this will take ownership of the entire folder and its
-contents, so if you've already got stuff in there (eg MySQL owned by a
-`mysql` user) you'll need to be a touch more careful. This is a
-recommendation from the Homebrew
-
-## Platform
+# Platform
 
 * Mac OS X (10.6+)
 
@@ -47,10 +25,7 @@ As this extends the built-in package resource/provider in Chef, it has
 all the resource attributes and actions available to the package
 resource. However, a couple notes:
 
-* Homebrew itself doesn't have a notion of "upgrade" per se. The
-  "upgrade" action will simply perform an install, and if the Homebrew
-  Formula for the package is newer, it will upgrade.
-* Likewise, Homebrew doesn't have a purge, but the "purge" action will
+* Homebrew doesn't have a purge, but the "purge" action will
   act like "remove".
 
 ### Examples
@@ -85,7 +60,7 @@ disable a tapped repository.
     homebrew_tap "homebrew/dupes" do
       action :untap
     end
-    
+
 ## homebrew\_cask
 
 LWRP for `brew cask`, a Homebrew-style CLI workflow for the administration
@@ -93,19 +68,6 @@ of Mac applications distributed as binaries. It's implemented as a homebrew
 "external command" called cask.
 
 [homebrew-cask on GitHub](https://github.com/phinze/homebrew-cask)
-
-## Prerequisites
-
-You must have the homebrew-cask repository tapped.
-
-    homebrew_tap 'phinze/cask' 
-    
-And then install the homebrew cask package before using this LWRP.
-
-    package "brew-cask" do
-      action :install
-    end
-
 
 ### Examples
 
@@ -137,9 +99,15 @@ The default itself ensures that Homebrew is installed and up to date.
 
 Author:: Graeme Mathieson (<mathie@woss.name>)
 Author:: Joshua Timberman (<joshua@opscode.com>)
+Author:: Pivotal Labs (<accounts@pivotallabs.com>)
+Author:: Roderik van der Veer (<roderik.van.der.veer@kunstmaan.be>)
 
 Copyright:: 2011, Graeme Mathieson
 Copyright:: 2012, Opscode, Inc <legal@opscode.com>
+Copyright:: 2009, Pivotal Labs <accounts@pivotallabs.com>
+Copyright:: 2013, Roderik van der Veer <roderik.van.der.veer@kunstmaan.be>
+
+## The parts from Opscode are licenced under:
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may
 not use this file except in compliance with the License. You may obtain
@@ -152,3 +120,28 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## The parts from Pivotal Labs and myself are licensed under:
+
+The MIT License
+
+Copyright (c) 2009-2013 Pivotal Labs
+Copyright (c) 2013 Roderik van der Veer
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

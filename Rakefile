@@ -1,17 +1,34 @@
-require 'rubygems'
-require 'chef'
-require 'json'
+#!/usr/bin/env rake
 
-desc "Generate an updated JSON metadata file"
-task :metadata do
-  cook_meta = Chef::Cookbook::Metadata.new
-  cook_meta.from_file('metadata.rb')
-  File.open('metadata.json', 'w') do |f|
-    f.write(JSON.pretty_generate(cook_meta))
+task :default => 'foodcritic'
+
+desc "Runs foodcritic linter"
+task :foodcritic do
+  Rake::Task[:prepare_sandbox].execute
+
+  if Gem::Version.new("1.9.2") <= Gem::Version.new(RUBY_VERSION.dup)
+    sh "foodcritic -f any #{sandbox_path}"
+  else
+    puts "WARN: foodcritic run is skipped as Ruby #{RUBY_VERSION} is < 1.9.2."
   end
 end
 
-desc "Create an archive for uploading to cookbooks.opscode.com"
-task :archive do
-  sh %{git archive --format=tar --prefix=homebrew/ HEAD |gzip -9 > homebrew.tar.gz}
+desc "Runs knife cookbook test"
+task :knife do
+  Rake::Task[:prepare_sandbox].execute
+
+  sh "bundle exec knife cookbook test cookbook -c test/.chef/knife.rb -o #{sandbox_path}/../"
+end
+
+task :prepare_sandbox do
+  files = %w{*.md *.rb attributes definitions libraries files providers recipes resources templates}
+
+  rm_rf sandbox_path
+  mkdir_p sandbox_path
+  cp_r Dir.glob("{#{files.join(',')}}"), sandbox_path
+end
+
+private
+def sandbox_path
+  File.join(File.dirname(__FILE__), %w(tmp cookbooks cookbook))
 end

@@ -18,6 +18,7 @@ action :cask do
       command "/usr/local/bin/brew cask install --appdir=/Applications #{new_resource.name}"
       not_if "/usr/local/bin/brew brew list | grep #{new_resource.name}"
     end
+    new_resource.updated_by_last_action(true)
   end
 end
 
@@ -28,5 +29,6 @@ action :uncask do
       command "/usr/local/bin/brew cask uninstall #{new_resource.name}"
       only_if "/usr/local/bin/brew cask list | grep #{new_resource.name}"
     end
+    new_resource.updated_by_last_action(true)
   end
 end
