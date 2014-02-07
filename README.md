@@ -10,7 +10,7 @@ This cookbook is an alternative implementation based upon the Homebrew cookbook 
 Add the following to your Cheffile
 
 ```
-cookbook "homebrewalt",              :github => "kitchenplan/homebrew",            :ref => "v1.7"
+cookbook "homebrewalt",              :github => "kitchenplan/chef-homebrewalt",            :ref => "v1.7"
 ```
 
 # Platform
