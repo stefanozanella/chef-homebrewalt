@@ -19,8 +19,6 @@
 # limitations under the License.
 #
 
-extend(Homebrew::Mixin)
-
 directory "/usr/local" do
   owner node['current_user']
   recursive true
@@ -42,7 +40,7 @@ package 'git' do
   not_if 'which git'
 end
 
-homebrew-alternative_tap 'phinze/cask'
+homebrewalt_tap 'phinze/cask'
 
 directory "/opt/homebrew-cask/Caskroom" do
     user node['current_user']
@@ -60,7 +58,7 @@ execute 'update homebrew from github' do
 end
 
 node['brew']['cask_apps'].each do |app|
-  homebrew-alternative_cask app
+  homebrewalt_cask app
 end
 
 node['brew']['apps'].each do |app|

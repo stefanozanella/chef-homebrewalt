@@ -5,6 +5,14 @@ and replaces MacPorts as the *default package provider* for the package resource
 
 This cookbook is an alternative implementation based upon the Homebrew cookbook maintained by Opscode and the pivotal_workstation cookbook by Pivotal Labs because the default Opscode cookbook did not work as needed for use in Kitchenplan.
 
+# Installation
+
+Add the following to your Cheffile
+
+```
+cookbook "homebrewalt",              :github => "kitchenplan/homebrew",            :ref => "v1.7"
+```
+
 # Platform
 
 * Mac OS X (10.6+)
@@ -15,9 +23,9 @@ and on platforms that Homebrew supports in the future.
 
 # Resources and Providers
 
-## package / homebrew\_package
+## package / homebrewalt\_package
 
-This cookbook provides a package provider called `homebrew_package`
+This cookbook provides a package provider called `homebrewalt_package`
 which will install/remove packages using Homebrew. This becomes the
 default provider for `package` if your platform is Mac OS X.
 
@@ -34,13 +42,13 @@ resource. However, a couple notes:
       action :install
     end
 
-    homebrew_package "mysql"
+    homebrewalt_package "mysql"
 
     package "mysql" do
       provider Chef::Provider::Package::Homebrew
     end
 
-## homebrew\_tap
+## homebrewalt\_tap
 
 LWRP for `brew tap`, a Homebrew command used to add additional formula
 repositories. From the `brew` man page:
@@ -55,13 +63,13 @@ disable a tapped repository.
 
 ### Examples
 
-    homebrew_tap "homebrew/dupes"
+    homebrewalt_tap "homebrew/dupes"
 
-    homebrew_tap "homebrew/dupes" do
+    homebrewalt_tap "homebrew/dupes" do
       action :untap
     end
 
-## homebrew\_cask
+## homebrewalt\_cask
 
 LWRP for `brew cask`, a Homebrew-style CLI workflow for the administration
 of Mac applications distributed as binaries. It's implemented as a homebrew
@@ -71,9 +79,9 @@ of Mac applications distributed as binaries. It's implemented as a homebrew
 
 ### Examples
 
-    homebrew_cask "google-chrome"
+    homebrewalt_cask "google-chrome"
 
-    homebrew_tap "google-chrome" do
+    homebrewalt_cask "google-chrome" do
       action :uncask
     end
 
@@ -85,7 +93,7 @@ uninstall a an Application.
 
 # Usage
 
-We strongly recommend that you put "recipe[homebrew]" in your node's
+We strongly recommend that you put "recipe[homebrewalt]" in your node's
 run list, to ensure that it is available on the system and that
 Homebrew itself gets installed. Putting an explicit dependency in the
 metadata will cause the cookbook to be downloaded and the library
@@ -97,15 +105,15 @@ The default itself ensures that Homebrew is installed and up to date.
 
 # License and Author
 
-Author:: Graeme Mathieson (<mathie@woss.name>)
-Author:: Joshua Timberman (<joshua@opscode.com>)
-Author:: Pivotal Labs (<accounts@pivotallabs.com>)
-Author:: Roderik van der Veer (<roderik.van.der.veer@kunstmaan.be>)
+* Author:: Graeme Mathieson (<mathie@woss.name>)
+* Author:: Joshua Timberman (<joshua@opscode.com>)
+* Author:: Pivotal Labs (<accounts@pivotallabs.com>)
+* Author:: Roderik van der Veer (<roderik.van.der.veer@kunstmaan.be>)
 
-Copyright:: 2011, Graeme Mathieson
-Copyright:: 2012, Opscode, Inc <legal@opscode.com>
-Copyright:: 2009, Pivotal Labs <accounts@pivotallabs.com>
-Copyright:: 2013, Roderik van der Veer <roderik.van.der.veer@kunstmaan.be>
+* Copyright:: 2011, Graeme Mathieson
+* Copyright:: 2012, Opscode, Inc <legal@opscode.com>
+* Copyright:: 2009, Pivotal Labs <accounts@pivotallabs.com>
+* Copyright:: 2013, Roderik van der Veer <roderik.van.der.veer@kunstmaan.be>
 
 ## The parts from Opscode are licenced under:
 

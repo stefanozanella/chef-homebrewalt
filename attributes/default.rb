@@ -19,7 +19,5 @@
 # limitations under the License.
 #
 
-default['homebrew']['owner'] = nil
-
-default['brew']['cask_apps'] = []
-default['brew']['apps'] = []
+default['homebrewalt']['cask_apps'] = []
+default['homebrewalt']['apps'] = []
