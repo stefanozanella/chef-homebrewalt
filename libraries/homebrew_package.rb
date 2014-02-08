@@ -27,7 +27,7 @@ require 'chef/mixin/shell_out'
 class Chef
   class Provider
     class Package
-      class Homebrew < Package
+      class Homebrewalt < Package
 
         include Chef::Mixin::ShellOut
 
@@ -100,5 +100,5 @@ class Chef
   end
 end
 
-Chef::Platform.set :platform => :mac_os_x_server, :resource => :package, :provider => Chef::Provider::Package::Homebrew
-Chef::Platform.set :platform => :mac_os_x, :resource => :package, :provider => Chef::Provider::Package::Homebrew
+Chef::Platform.set :platform => :mac_os_x_server, :resource => :package, :provider => Chef::Provider::Package::Homebrewalt
+Chef::Platform.set :platform => :mac_os_x, :resource => :package, :provider => Chef::Provider::Package::Homebrewalt
