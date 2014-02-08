@@ -48,19 +48,17 @@ directory "/opt/homebrew-cask/Caskroom" do
     recursive true
 end
 
-package "brew-cask" do
-  action :install
-end
+package "brew-cask"
 
 execute 'update homebrew from github' do
   user node['current_user']
   command '/usr/local/bin/brew update || true'
 end
 
-node['brew']['cask_apps'].each do |app|
+node['homebrewalt']['cask_apps'].each do |app|
   homebrewalt_cask app
 end
 
-node['brew']['apps'].each do |app|
+node['homebrewalt']['apps'].each do |app|
   package app
 end
