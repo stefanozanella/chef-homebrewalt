@@ -1,6 +1,6 @@
 
 def load_current_resource
-  @cask = Chef::Resource::HomebrewCask.new(new_resource.name)
+  @cask = Chef::Resource::HomebrewaltCask.new(new_resource.name)
   cask_dir = @cask.name
 
   Chef::Log.debug("Checking whether we've already installed cask #{new_resource.name}")
