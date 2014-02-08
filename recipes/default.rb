@@ -48,7 +48,9 @@ directory "/opt/homebrew-cask/Caskroom" do
     recursive true
 end
 
-package "brew-cask"
+package "brew-cask" do
+  options "--HEAD"
+end
 
 execute 'update homebrew from github' do
   user node['current_user']
