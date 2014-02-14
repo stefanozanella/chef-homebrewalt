@@ -1,7 +1,7 @@
 #
 # Author:: Joshua Timberman (<jtimberman@opscode.com>)
 # Author:: Graeme Mathieson (<mathie@woss.name>)
-# Cookbook Name:: homebrew
+# Cookbook Name:: homebrewalt
 # Recipes:: default
 #
 # Copyright 2011-2013, Opscode, Inc.
@@ -41,6 +41,7 @@ package 'git' do
 end
 
 homebrewalt_tap 'phinze/cask'
+homebrewalt_tap 'caskroom/versions'
 
 directory "/opt/homebrew-cask/Caskroom" do
     user node['current_user']
