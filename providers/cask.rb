@@ -15,8 +15,8 @@ action :cask do
   unless @cask.casked
     execute "installing cask #{new_resource.name}" do
       user node['current_user']
-      command "/usr/local/bin/brew cask install --appdir=/Applications #{new_resource.name}"
-      not_if "/usr/local/bin/brew brew list | grep #{new_resource.name}"
+      command "sudo -u #{node['current_user']} /usr/local/bin/brew cask install --appdir=/Applications #{new_resource.name}"
+      not_if "sudo -u #{node['current_user']} /usr/local/bin/brew cask list | grep #{new_resource.name}"
     end
     new_resource.updated_by_last_action(true)
   end
@@ -26,8 +26,8 @@ action :uncask do
   if @cask.casked
     execute "uninstalling cask #{new_resource.name}" do
       user node['current_user']
-      command "/usr/local/bin/brew cask uninstall #{new_resource.name}"
-      only_if "/usr/local/bin/brew cask list | grep #{new_resource.name}"
+      command "sudo -u #{node['current_user']} /usr/local/bin/brew cask uninstall #{new_resource.name}"
+      only_if "sudo -u #{node['current_user']} /usr/local/bin/brew cask list | grep #{new_resource.name}"
     end
     new_resource.updated_by_last_action(true)
   end

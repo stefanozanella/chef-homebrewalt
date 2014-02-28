@@ -32,6 +32,7 @@ remote_file homebrew_go do
 end
 
 execute homebrew_go do
+  command "sudo -u #{node['current_user']} #{homebrew_go}"
   user node['current_user']
   not_if { ::File.exist? '/usr/local/bin/brew' }
 end
@@ -55,7 +56,7 @@ end
 
 execute 'update homebrew from github' do
   user node['current_user']
-  command '/usr/local/bin/brew update || true'
+  command "sudo -u #{node['current_user']} /usr/local/bin/brew update || true"
 end
 
 node['homebrewalt']['cask_apps'].each do |app|
