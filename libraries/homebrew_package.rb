@@ -44,7 +44,7 @@ class Chef
         end
 
         def upgrade_package(name, version)
-          unless shell_out!("brew outdated | grep #{name}")
+          unless `brew outdated | grep #{name}`
             brew('upgrade', name)
           end
         end
