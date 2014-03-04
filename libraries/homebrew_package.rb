@@ -44,7 +44,7 @@ class Chef
         end
 
         def upgrade_package(name, version)
-          unless `brew outdated | grep #{name}`
+          if shell_out!("brew outdated | grep #{name}", :returns => [0,1]).exitstatus.zero?
             brew('upgrade', name)
           end
         end
