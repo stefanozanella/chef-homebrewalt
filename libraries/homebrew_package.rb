@@ -96,6 +96,7 @@ class Chef
           output.stdout
         end
       end
+      Homebrew = Homebrewalt
     end
   end
 end
