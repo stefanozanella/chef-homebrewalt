@@ -69,5 +69,5 @@ node['homebrewalt']['apps'].each do |app|
 end
 
 node['homebrewalt']['cask_fonts'].each do |font|
-  homebrew_cask "font-#{font}"
+  homebrewalt_cask "font-#{font}"
 end
