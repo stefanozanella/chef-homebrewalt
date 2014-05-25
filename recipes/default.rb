@@ -43,6 +43,7 @@ end
 
 homebrewalt_tap 'phinze/cask'
 homebrewalt_tap 'caskroom/versions'
+homebrewalt_tap 'caskroom/fonts'
 
 directory "/opt/homebrew-cask/Caskroom" do
     user node['current_user']
@@ -65,4 +66,8 @@ end
 
 node['homebrewalt']['apps'].each do |app|
   package app
+end
+
+node['homebrewalt']['cask_fonts'].each do |font|
+  homebrew_cask font
 end
