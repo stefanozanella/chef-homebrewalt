@@ -44,7 +44,7 @@ end
 homebrewalt_tap 'phinze/cask'
 homebrewalt_tap 'caskroom/versions'
 homebrewalt_tap 'caskroom/fonts'
-homebrewalt_tap 'homewbrew/dupes'
+homebrewalt_tap 'homebrew/dupes'
 
 directory "/opt/homebrew-cask/Caskroom" do
     user node['current_user']
