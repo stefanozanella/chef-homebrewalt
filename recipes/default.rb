@@ -33,7 +33,7 @@ remote_file homebrew_go do
 end
 
 execute homebrew_go do
-  command "sudo -u #{node['current_user']} #{homebrew_go}"
+  command "sudo -u #{node['current_user']} ruby #{homebrew_go}"
   user node['current_user']
   not_if { ::File.exist? '/usr/local/bin/brew' }
 end
