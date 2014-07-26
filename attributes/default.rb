@@ -22,3 +22,4 @@
 default['homebrewalt']['cask_apps'] = []
 default['homebrewalt']['apps'] = []
 default['homebrewalt']['cask_fonts'] = []
+default['homebrewalt']['taps'] = []

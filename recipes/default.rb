@@ -46,6 +46,9 @@ homebrewalt_tap 'phinze/cask'
 homebrewalt_tap 'caskroom/versions'
 homebrewalt_tap 'caskroom/fonts'
 homebrewalt_tap 'homebrew/dupes'
+node['homebrewalt']['taps'].each do |tap|
+  homebrewalt_tap tap
+end
 
 directory "/opt/homebrew-cask/Caskroom" do
     user node['current_user']
