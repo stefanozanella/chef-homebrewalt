@@ -42,7 +42,7 @@ package 'git' do
   not_if 'which git'
 end
 
-homebrewalt_tap 'phinze/cask'
+homebrewalt_tap 'caskroom/cask'
 homebrewalt_tap 'caskroom/versions'
 homebrewalt_tap 'caskroom/fonts'
 homebrewalt_tap 'homebrew/dupes'
