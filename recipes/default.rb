@@ -24,6 +24,10 @@ directory "/usr/local" do
   recursive true
 end
 
+execute "Make sure the current user owns /usr/local" do
+  command "chown -R #{node['current_user']} /usr/local"
+end
+
 homebrew_go = "#{Chef::Config[:file_cache_path]}/homebrew_go"
 
 remote_file homebrew_go do
