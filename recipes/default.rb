@@ -39,11 +39,6 @@ execute "Make sure the current user owns /opt/homebrew-cask/" do
   only_if do ::File.exists?("/opt/homebrew-cask/") end
 end
 
-execute "Make sure the current user owns /opt/homebrew-cask/" do
-  command "chmod o+x /opt/homebrew-cask/"
-  only_if do ::File.exists?("/opt/homebrew-cask/") end
-end
-
 homebrew_go = "#{Chef::Config[:file_cache_path]}/homebrew_go"
 
 remote_file homebrew_go do
