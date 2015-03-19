@@ -40,7 +40,7 @@ execute "Make sure the current user owns /opt/homebrew-cask/" do
 end
 
 execute "Make sure the current user owns /opt/homebrew-cask/" do
-  command "chmod o+x -R #{node['current_user']} /opt/homebrew-cask/"
+  command "chmod -r o+x #{node['current_user']} /opt/homebrew-cask/"
   only_if do ::File.exists?("/opt/homebrew-cask/") end
 end
 
