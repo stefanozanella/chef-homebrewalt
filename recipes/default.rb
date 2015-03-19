@@ -24,13 +24,6 @@ directory "/usr/local" do
   recursive true
 end
 
-directory "/Applications" do
-  owner 'root'
-  group 'wheel'
-  recursive true
-end
-
-
 execute "Make sure the current user owns /usr/local" do
   command "chown -R #{node['current_user']} /usr/local"
   only_if do ::File.exists?("/usr/local") end
