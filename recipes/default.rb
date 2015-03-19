@@ -28,6 +28,10 @@ execute "Make sure the current user owns /usr/local" do
   command "chown -R #{node['current_user']} /usr/local"
 end
 
+execute "Make sure the current user owns /Library/Caches/Homebrew/" do
+  command "chown -R #{node['current_user']} /Library/Caches/Homebrew/"
+end
+
 homebrew_go = "#{Chef::Config[:file_cache_path]}/homebrew_go"
 
 remote_file homebrew_go do
