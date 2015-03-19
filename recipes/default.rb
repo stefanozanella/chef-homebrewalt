@@ -25,17 +25,17 @@ directory "/usr/local" do
 end
 
 execute "Make sure the current user owns /usr/local" do
-  command "chown -R #{node['current_user']} /usr/local"
+  command "chown -R #{node['current_user']}:wheel /usr/local"
   only_if do ::File.exists?("/usr/local") end
 end
 
 execute "Make sure the current user owns /Library/Caches/Homebrew/" do
-  command "chown -R #{node['current_user']} /Library/Caches/Homebrew/"
+  command "chown -R #{node['current_user']}:wheel /Library/Caches/Homebrew/"
   only_if do ::File.exists?("/Library/Caches/Homebrew/") end
 end
 
 execute "Make sure the current user owns /opt/homebrew-cask/" do
-  command "chown -R #{node['current_user']} /opt/homebrew-cask/"
+  command "chown -R #{node['current_user']}:wheel /opt/homebrew-cask/"
   only_if do ::File.exists?("/opt/homebrew-cask/") end
 end
 
