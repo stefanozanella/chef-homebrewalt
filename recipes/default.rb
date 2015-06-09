@@ -61,6 +61,8 @@ homebrewalt_tap 'caskroom/cask'
 homebrewalt_tap 'caskroom/versions'
 homebrewalt_tap 'caskroom/fonts'
 homebrewalt_tap 'homebrew/dupes'
+homebrewalt_tap 'homebrew/versions'
+homebrewalt_tap 'homebrew/php'
 node['homebrewalt']['taps'].each do |tap|
   homebrewalt_tap tap
 end
