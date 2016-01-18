@@ -89,6 +89,7 @@ class Chef
           ENV["HOMEBREW_PREFIX"] = brew_prefix
           ENV["HOMEBREW_REPOSITORY"] = brew_repo
           ENV["HOMEBREW_LIBRARY"] = "#{brew_repo}/Library"
+          ENV["HOMEBREW_CELLAR"] = "#{brew_repo}/Cellar"
           require 'global'
           require 'cmd/info'
 
