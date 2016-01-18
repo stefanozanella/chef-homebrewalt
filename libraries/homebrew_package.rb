@@ -81,11 +81,13 @@ class Chef
         end
 
         def get_version_from_formula
-          brew_cmd = shell_out!("sudo -u #{node['current_user']} brew --prefix")
-          libpath = ::File.join(brew_cmd.stdout.chomp, "Library", "Homebrew")
+          brew_prefix = shell_out!("sudo -u #{node['current_user']} brew --prefix").stdout.chomp
+          brew_repo = shell_out!("sudo -u #{node['current_user']} brew --repository").stdout.chomp
+          libpath = ::File.join(brew_prefix, "Library", "Homebrew")
           $:.unshift(libpath)
 
-          ENV["HOMEBREW_PREFIX"] = brew_cmd.stdout.chomp
+          ENV["HOMEBREW_PREFIX"] = brew_prefix
+          ENV["HOMEBREW_REPOSITORY"] = brew_repo
           require 'global'
           require 'cmd/info'
 
