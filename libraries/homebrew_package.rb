@@ -85,7 +85,7 @@ class Chef
           libpath = ::File.join(brew_cmd.stdout.chomp, "Library", "Homebrew")
           $:.unshift(libpath)
 
-          ENV["HOMEBREW_PREFIX"] = brew_cmd.chomp
+          ENV["HOMEBREW_PREFIX"] = brew_cmd.stdout.chomp
           require 'global'
           require 'cmd/info'
 
