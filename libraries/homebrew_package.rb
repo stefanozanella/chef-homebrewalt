@@ -88,6 +88,7 @@ class Chef
 
           ENV["HOMEBREW_PREFIX"] = brew_prefix
           ENV["HOMEBREW_REPOSITORY"] = brew_repo
+          ENV["HOMEBREW_LIBRARY"] = File.join(brew_repo, "Library")
           require 'global'
           require 'cmd/info'
 
